@@ -1,26 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component{
+  
+  constructor(props){
+    super(props);
+    this.state = {dataAtual: new Date()};
+  }
+
+  state = {
+    nome: '',
+  }
+  
+  modificarNome = (evento) => {
+    let novoNome = evento.target.value;
+    this.setState({
+      nome: novoNome
+    })
+  }
+
+  componentDidMount(){
+    console.log('Executou o componente')
+  }
+
+  render(){
+    console.log('Executou o render')
+    return(
+      <div>
+        <input type="text" value={this.state.nome} onChange={this.modificarNome}/>
+        <h1>Hello {this.state.nome}</h1>
+        <h1>Data: {this.state.dataAtual.toLocaleDateString()}</h1>
+      </div>
+    )
+  }
 }
 
 export default App;
